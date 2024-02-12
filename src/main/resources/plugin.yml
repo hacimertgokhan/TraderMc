@@ -1,0 +1,16 @@
+name: TraderMc
+version: '${project.version}'
+main: net.mixium.tradermc.TraderMc
+api-version: '1.16'
+prefix: TraderMc
+load: POSTWORLD
+depend: [Vault]
+authors: [Haci_Mert_Gokhan]
+description: TraderMc, Minecraft real-time trade plugin.
+commands:
+  TraderMc:
+    description: TraderMc Admin command.
+    permission: tradermc.admin
+  TMC:
+    permission: tradermc.user
+    description: TraderMc User command.

@@ -1,0 +1,118 @@
+#
+# TraderMc is Minecraft economy addon. It extracts and uses the selected BIST indices exactly.
+# Please enter the symbolic names of BIST Indices once and use capital letters.
+# If the indexes are entered more than once, there will be no problem and the plugin will notify you. (BETA)
+# Please report any problems via e-mail or discord.
+#
+# You can change the config file as you wish, but if you do not know what you are doing, please do not change it.
+# It may lead to unexpected errors and malfunction of the plugin. 
+#
+# Wishing you to be happy and peaceful.
+# TradeMc Developer - Hacı Mert Gökhan | github.com/hacimertgokhan
+#
+# It is not recommended to add more than 50 indexes due to data complexity.
+#
+
+# TABLE NAME `TraderMc`
+
+mysql:
+  address: 0.0.0.0
+  password: password
+  database: database
+  username: username
+
+trader-mc:
+  lang: en # en, tr
+  storage: yaml # yaml, mysql
+  prefix: '&d&lTraderMC:'
+  update: 120 # sec
+  broadcast: true
+  join-message: true
+  warnings:
+    api: true # if boolean is false, you cant get api notifys.
+    update: true # if boolean is false, you cant get indices update notify.
+  indices: # BIST INDICES SYMBOLIC NAMES
+    - "THYAO"
+    - "DOAS"
+    - "TAVHL"
+    - "AEFES"
+  messages:
+    join-message:
+      - ''
+      - '&a&lIndices'
+      - ' &8&l* &f%indices%'
+      - ''
+    broadcast:
+      - ''
+      - '&a&lINDICES UPDATED !'
+      - ' &8&l* &f%indices%'
+      - ''
+    help:
+      user:
+        - '&f'
+        - '&a&lTraderMc &7- %version%'
+        - '  &7/TraderMc help : Help command.'
+        - '  &7/TraderMc indices : Shows how many indices that you have.'
+        - '  &7/TraderMc buy <Amount> <Indices> : Buy specified indices.'
+        - '  &7/TraderMc sell <Amount> <Indices> : Sell specified indices.'
+        - '&f'
+      admin:
+        - '&f'
+        - '&a&lTraderMC &7- %version%'
+        - ' &7/TraderMc -a <Player> <Indices> <Amount> : Add specified indices to player portfolio.'
+        - ' &7/TraderMc -r <Player> <Indices> <Amount> : Remove specified indices from player portfolio.'
+        - ' &7/TraderMc -i <Indices> : Shows indices information.'
+        - ' &7/TraderMc -ui <Player> : Shows player indices portfolio.'
+        - ' &7/TraderMc -rel : Reload tradermc.'
+        - ' &7/TraderMc -il : Shows indices list.'
+        - ' &7/TraderMc -ir : Update indices. &c(USE WHILE SERVER IN MAINTENANCE !!!!)'
+        - '&f'
+        - '&a%devs%'
+    commands:
+      tradermc:
+        indices-info:
+          - '&f'
+          - '&a&l%indices_name%'
+          - '&7 * Price: &b%indices_price%'
+          - '&7 * Change: &c%indices_change% TRY'
+          - '&7 * Rate: &a%%indices_rate%'
+          - '&7 * Last update: &6%indices_lastupdate%'
+          - '&f'
+    user:
+      indices-list:
+        title: '&a&lOwned indices'
+        title-yaml: '&a&lOwned indices &a(Total indices value: &f%total_value% TRY)' # ONLY WORKS ON YAML MODE
+        format: '%s: %s'
+        elements: ' &7&l* &f%indices%'
+    admin:
+      indices-list:
+        title: '&a&l%player%`s indices list'
+        format: '%s: %s'
+        elements: ' &7&l* &f%indices%'
+    remove:
+      removed: '&a%amount%&fx &a%indices% &fremoved from &a%player% &faccount.'
+      indices-not-found: '&7Indices &a%indices% &7not found !'
+      integer-error: '&7Must be positive and integer. (3, 6, 9)'
+    add:
+      added: '&a%amount%&fx &a%indices% &fadded to &a%player% &faccount.'
+      indices-not-found: '&7Indices &a%indices% &7not found !'
+      integer-error: '&7Must be positive and integer. (3, 6, 9)'
+    buy:
+      success: '&a&lSuccess ! &a%amount%&7x &a%indices% &7cost &a%total% TRY.'
+      not-enough-money: '&7Not enough money. Need: &a%total% TRY'
+      indices-not-found: '&7Indices &a%indices% &7not found !'
+      integer-error: '&7Must be positive and integer. (3, 6, 9)'
+    sell:
+      success: '&a&lSuccess ! &a%amount%&7x &a%indices% &7added &a%total% TRY &7to your own account.'
+      not-enough-indices: '&7Not enough indices.'
+      indices-not-found: '&7Indices &a%indices% &7not found !'
+      integer-error: '&7Must be positive and integer. (3, 6, 9)'
+    must-be-number: '&7Must be an integer.'
+    test-sended: '&7Test command sended for: &a%player%.'
+    not-online: '&7%player% not online.'
+    no-console: '&7You cannot use that command from console.'
+    indices-list: '&7Indices: &a%indices%'
+    reloaded: "&7Plugin reloaded."
+    indices-not-found: '&7Indices not found.'
+    no-permission: "&7Not enough permission to do this.."
+    updated: '&7Indices updated ! (&aUpdated: &l%updated%&r &8| &cSkipped: &l%skipped%&r&7)'
