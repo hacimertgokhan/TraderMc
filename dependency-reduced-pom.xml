@@ -4,7 +4,7 @@
   <groupId>net.mixium</groupId>
   <artifactId>TraderMc</artifactId>
   <name>TraderMc</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>TraderMc, Minecraft real-time trade plugin.</description>
   <build>
     <resources>
