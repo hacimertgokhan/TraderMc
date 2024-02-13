@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import static net.mixium.tradermc.config.Config.getLanguage;
 import static net.mixium.tradermc.maps.Indices.*;
 import static net.mixium.tradermc.storage.Storage.getType;
+import static net.mixium.tradermc.storage.yaml.YamlDataStock.saveStock;
 import static net.mixium.tradermc.vault.VaultEconomy.setupEconomy;
 
 public final class TraderMc extends JavaPlugin {
@@ -87,4 +88,19 @@ public final class TraderMc extends JavaPlugin {
             }
         }, refresh*20, refresh*40);
     }
+
+    @Override
+    public void onDisable() {
+        if (getType().equalsIgnoreCase("yaml")) {
+            saveStock();
+            if(getConfig().getBoolean("trader-mc.warnings.disable")) {
+                if(getLanguage().equalsIgnoreCase("tr")) {
+                    Bukkit.getLogger().warning("[TraderMc] Eklenti kapatıldı, storage.yml dosyasındaki bütün veriler son kez okundu ve kayıt edildi.");
+                } else if(getLanguage().equalsIgnoreCase("en")) {
+                    Bukkit.getLogger().warning("[TraderMc] Plugin disabled, all datas in storage.yml saved last time.");
+                }
+            }
+        }
+    }
+
 }

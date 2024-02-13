@@ -14,7 +14,6 @@
 #
 
 # TABLE NAME `TraderMc`
-
 mysql:
   address: 0.0.0.0
   password: password
@@ -29,7 +28,8 @@ trader-mc:
   broadcast: true
   join-message: true
   warnings:
-    api: true # if boolean is false, you cant get api notifys.
+    disable: true # if boolean is false, you cant get saved-data notifys,
+    api: true # if boolean is false, you cant get api notify.
     update: true # if boolean is false, you cant get indices update notify.
   indices: # BIST INDICES SYMBOLIC NAMES
     - "THYAO"
